@@ -1,0 +1,24 @@
+<ngx-loading [show]="isLoading" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
+
+<div class="page-container">
+  <div class="table-data">
+    <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [externalPaging]="true"
+      [count]="tablePage.totalElements"
+      [offset]="tablePage.currentPage"
+      [limit]="tablePage.size"
+      (page)='setPage($event)'>
+      <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
+      <ngx-datatable-column name="Color" prop="color"></ngx-datatable-column>
+      <ngx-datatable-column name="Year" prop="year"></ngx-datatable-column>
+      <ngx-datatable-column name="Pantone value" prop="pantone_value"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
+
+

@@ -1,0 +1,26 @@
+<div class="header">
+  <img src="../assets/img/logo.png">
+
+  <div class="navigation-bar" *ngIf="isAuthorized">
+    <a [routerLink]="['']" routerLinkActive="active-link"
+       [routerLinkActiveOptions]="{exact: true}">Home</a>
+
+    <a [routerLink]="['orders']"
+       routerLinkActive="active-link">Orders</a>
+
+    <a [routerLink]="['users']" *ngIf="currentUserRole === userRole.ADMIN"
+       routerLinkActive="active-link">Users</a>
+  </div>
+
+  <label *ngIf="isAuthorized" id="logout" (click)="onLogout()">Log out</label>
+</div>
+
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="footer">
+</div>
+
+

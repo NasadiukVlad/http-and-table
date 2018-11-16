@@ -1,0 +1,65 @@
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  @include flex-column;
+  justify-content: center;
+  align-items: center;
+  height: 88vh;
+  width: 96vw;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-row {
+    display: flex;
+    margin-top: 3vh;
+    width: 404px;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      width: 200px;
+      height: 25px;
+      margin-left: 10px;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    select {
+      position: absolute;
+      margin-left: 200px;
+      width: 204px;
+      height: 32px;
+    }
+
+    .ng-invalid {
+      border: 1px solid red;
+    }
+
+  }
+
+
+  button {
+    margin-top: 20px;
+    width: 110px;
+    height: 30px;
+    border-radius: 14px;
+    border: none;
+    background: cornsilk;
+    outline: none;
+    cursor: pointer;
+  }
+
+}
+
+

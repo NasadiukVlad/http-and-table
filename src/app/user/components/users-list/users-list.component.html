@@ -1,0 +1,25 @@
+<ngx-loading [show]="isLoading" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
+
+<div class="page-container">
+  <div class="table-data">
+    <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [externalPaging]="true"
+      [count]="tablePage.totalElements"
+      [offset]="tablePage.currentPage"
+      [limit]="tablePage.size"
+      (page)='setPage($event)'>
+      <ngx-datatable-column name="ID" prop="id"></ngx-datatable-column>
+      <ngx-datatable-column name="First Name" prop="first_name"></ngx-datatable-column>
+      <ngx-datatable-column name="Last name" prop="last_name"></ngx-datatable-column>
+      <ngx-datatable-column name="Avatar" prop="avatar" [width]="450"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
+
+
+

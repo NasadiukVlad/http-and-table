@@ -1,0 +1,29 @@
+<div class="form-container">
+  <h1>Sign In</h1>
+  <form [formGroup]="signInForm">
+
+    <div class="form-row">
+      <label>Username:</label>
+      <input
+        type="text"
+        formControlName="username"
+      >
+    </div>
+
+    <div class="form-row">
+      <label>Password: </label>
+      <input
+        type="password"
+        formControlName="password"
+      >
+    </div>
+
+    <button (click)="onSignIn()">
+      Sign In
+    </button>
+
+  </form>
+</div>
+
+
+
