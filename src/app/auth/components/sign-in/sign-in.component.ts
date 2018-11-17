@@ -14,6 +14,9 @@ export class SignInComponent {
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService) {
     this.buildForm();
+
+    // prevent menu visibility issues
+    this.authService.loginEventEmitter.emit(false);
   }
 
   public onSignIn() {
