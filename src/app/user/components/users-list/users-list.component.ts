@@ -1,35 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {TablePage} from '../../../shared/models/table-page.model';
+import {Component} from '@angular/core';
 import {IResourceData} from '../../../shared/models/resource-data.model';
 import {RestService} from '../../../core/services/rest.service';
 import {ITableResponse} from '../../../shared/models/table-response.model';
+import {NgxTablePageModel} from '../../../shared/models/ngx-table-page.model';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit {
-  public tablePage = new TablePage();
+export class UsersListComponent {
+  public ngxTablePage = new NgxTablePageModel();
   public rows: IResourceData[] = [];
   public isLoading: boolean;
 
   constructor(private restService: RestService) {
-    this.tablePage.currentPage = 0;
+    this.ngxTablePage.offset = 0;
+    this.loadPage(this.ngxTablePage);
   }
 
-  public ngOnInit() {
-    this.setPage({offset: 0});
-  }
-
-  public setPage(pageInfo) {
+  public loadPage(page?: NgxTablePageModel) {
     this.isLoading = true;
-    this.tablePage.currentPage = pageInfo.offset;
+    this.ngxTablePage.offset = page.offset;
 
-    this.restService.clients().clientsList({page: pageInfo.offset + 1})
+    this.restService.clients().clientsList({page: page.offset + 1})
       .subscribe((response: ITableResponse) => {
-        this.tablePage.totalElements = response.total_pages;
-        this.tablePage.size = response.per_page;
+        this.ngxTablePage.count = response.total;
+        this.ngxTablePage.limit = response.per_page;
 
         this.rows = (response.data as IResourceData[]);
         this.isLoading = false;

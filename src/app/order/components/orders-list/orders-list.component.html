@@ -9,10 +9,10 @@
       [footerHeight]="50"
       [rowHeight]="'auto'"
       [externalPaging]="true"
-      [count]="tablePage.totalElements"
-      [offset]="tablePage.currentPage"
-      [limit]="tablePage.size"
-      (page)='setPage($event)'>
+      [count]="ngxTablePage.count"
+      [offset]="ngxTablePage.offset"
+      [limit]="ngxTablePage.limit"
+      (page)="loadPage($event)">
       <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
       <ngx-datatable-column name="Color" prop="color"></ngx-datatable-column>
       <ngx-datatable-column name="Year" prop="year"></ngx-datatable-column>

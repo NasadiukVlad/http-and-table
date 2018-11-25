@@ -10,5 +10,4 @@ import {NgxLoadingModule} from 'ngx-loading';
   exports: [NgxDatatableModule, NgxLoadingModule],
   declarations: []
 })
-export class SharedAppModule {
-}
+export class SharedAppModule {}
