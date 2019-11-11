@@ -16,12 +16,11 @@ export class SignInComponent {
     this.buildForm();
 
     // prevent menu visibility issues
-    this.authService.loginEventEmitter.emit(false);
+    this.authService.loginAction.next(false);
   }
 
   public onSignIn() {
-    const username = this.signInForm.controls['username'].value;
-    const password = this.signInForm.controls['password'].value;
+    const {username, password} = this.signInForm.value;
     this.authService.login(username, password);
   }
 
@@ -37,4 +36,7 @@ export class SignInComponent {
       });
   }
 }
+
+
+
 

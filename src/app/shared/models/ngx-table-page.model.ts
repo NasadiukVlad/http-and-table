@@ -1,10 +1,4 @@
-export interface INgxTablePageModel {
-  count: number;
-  limit: number;
-  offset: number;
-}
-
-export class NgxTablePageModel implements INgxTablePageModel {
+export class NgxTablePage {
   public count: number; // Total count of all rows
   public limit: number; // Page size to show
   public offset: number; // Current offset ( page - 1 ) shown.
@@ -14,6 +8,7 @@ export class NgxTablePageModel implements INgxTablePageModel {
     this.offset = offset;
   }
 }
+
 
 
 

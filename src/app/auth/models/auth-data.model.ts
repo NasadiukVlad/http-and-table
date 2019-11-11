@@ -1,9 +1,4 @@
-export interface IAuthData {
-  email: string;
-  password: string;
-}
-
-export class AuthData implements IAuthData {
+export class AuthData {
   public email: string;
   public password: string;
 

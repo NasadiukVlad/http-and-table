@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class UserService {
 
-  public currentUser: User;
+  private currentUser: User;
   private usersCollection: User[] = [];
 
   constructor(private router: Router) {

@@ -1,5 +1,5 @@
-import {IResourceData} from './resource-data.model';
-import {IClientData} from './client-data.model';
+import {IResourceData} from './resource-data.interface';
+import {IClientData} from './client-data.interface';
 
 export interface ITableResponse {
   page: number;

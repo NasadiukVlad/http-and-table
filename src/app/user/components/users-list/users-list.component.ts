@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {IResourceData} from '../../../shared/models/resource-data.model';
+import {IResourceData} from '../../../shared/interfaces/resource-data.interface';
 import {RestService} from '../../../core/services/rest.service';
-import {ITableResponse} from '../../../shared/models/table-response.model';
-import {NgxTablePageModel} from '../../../shared/models/ngx-table-page.model';
+import {ITableResponse} from '../../../shared/interfaces/table-response.interface';
+import {NgxTablePage} from '../../../shared/models/ngx-table-page.model';
 
 @Component({
   selector: 'app-users-list',
@@ -10,7 +10,7 @@ import {NgxTablePageModel} from '../../../shared/models/ngx-table-page.model';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent {
-  public ngxTablePage = new NgxTablePageModel();
+  public ngxTablePage = new NgxTablePage();
   public rows: IResourceData[] = [];
   public isLoading: boolean;
 
@@ -19,7 +19,7 @@ export class UsersListComponent {
     this.loadPage(this.ngxTablePage);
   }
 
-  public loadPage(page?: NgxTablePageModel) {
+  public loadPage(page?: NgxTablePage) {
     this.isLoading = true;
     this.ngxTablePage.offset = page.offset;
 
@@ -35,3 +35,5 @@ export class UsersListComponent {
       });
   }
 }
+
+

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from './core/services/auth.service';
 import {UserService} from './core/services/user.service';
 import {UserRole} from './auth/enums/user-role.enum';
@@ -9,32 +9,39 @@ import {UserRole} from './auth/enums/user-role.enum';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-
+export class AppComponent implements OnInit {
   public isAuthorized: boolean;
   public currentUserRole: UserRole;
-  public userRole = UserRole;
+  public readonly userRole = UserRole;
 
   constructor(private authService: AuthService,
-              private userService: UserService) {
+              private userService: UserService) {}
 
+  public onLogout() {
+    this.authService.logout();
+  }
+
+  public ngOnInit(): void {
+    this.searchForUser();
+    this.subscribeOnLoginAction();
+  }
+
+  private searchForUser(): void {
     const currentUser = this.userService.getUser();
     if (currentUser) {
       this.currentUserRole = currentUser.role;
       this.isAuthorized = true;
     }
+  }
 
-    this.authService.loginEventEmitter.subscribe((authStatus: boolean) => {
+  private subscribeOnLoginAction(): void {
+    this.authService.loginAction.subscribe((authStatus: boolean) => {
       this.isAuthorized = authStatus;
 
       if (authStatus) {
         this.currentUserRole = this.userService.getUserRoles();
       }
     });
-  }
-
-  public onLogout() {
-    this.authService.logout();
   }
 }
 

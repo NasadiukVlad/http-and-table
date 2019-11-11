@@ -16,7 +16,7 @@ const AUTH_ROUTES: Routes = [
   imports: [RouterModule.forChild(AUTH_ROUTES)],
   exports: [RouterModule]
 })
-export class AuthRouting {
+export class AuthRoutingModule {
 }
 
 

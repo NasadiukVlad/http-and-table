@@ -3,12 +3,12 @@ import {CommonModule} from '@angular/common';
 import {AuthComponent} from './auth.component';
 import {SignInComponent} from './components/sign-in/sign-in.component';
 import {SharedAppModule} from '../shared/shared-app.module';
-import {AuthRouting} from './auth.routing';
+import {AuthRoutingModule} from './auth-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule, SharedAppModule, AuthRouting, ReactiveFormsModule, FormsModule
+    CommonModule, SharedAppModule, AuthRoutingModule, ReactiveFormsModule, FormsModule
   ],
   declarations: [AuthComponent, SignInComponent]
 })

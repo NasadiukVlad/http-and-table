@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserService } from './user.service';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {AuthData} from '../../auth/models/auth-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class RestService {
       forgotPassword: params => this.makeRequest('put', 'auth/forgot', params),
       changePassword: params => this.makeRequest('put', 'auth/change', params),
     };
+  }
+
+  public getClientsListAlternative(body: AuthData, searchParams: {page: number}): Observable<any> {
+    return this.http.get(`${this.prefixRestPath}/api/users`, {params: this.makeUrlSearchParams(searchParams)})
   }
 
   public clients() {

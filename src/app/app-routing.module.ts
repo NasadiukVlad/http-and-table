@@ -4,24 +4,32 @@ import {HomeComponent} from './core/components/home/home.component';
 import {AuthGuard} from './core/guards/auth.guard';
 import {AdminGuard} from './core/guards/admin.guard';
 import {AuthorizedUserGuard} from './core/guards/authorized-user.guard';
-
+import {UserResolverService} from './core/services/user-resolver.service';
 
 const ROUTES: Routes = [
   {
     path: '', component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: {
+      allUsers: UserResolverService
+    }
   },
   {
-    path: 'orders', loadChildren: 'app/order/order.module#OrderModule',
+    path: 'orders',
+    loadChildren: () => import('app/order/order.module').then(m => m.OrderModule),
+    canLoad: [AuthGuard],
     canActivate: [AuthGuard],
   },
   {
-    path: 'users', loadChildren: 'app/user/user.module#UserModule',
-    canActivate: [AuthGuard, AdminGuard]
+    path: 'users',
+    loadChildren: () => import('app/user/user.module').then(m => m.UserModule),
+    canLoad: [AuthGuard, AdminGuard],
+    canActivate: [AuthGuard],
   },
   {
-    path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule',
-    canActivate: [AuthorizedUserGuard]
+    path: 'auth',
+    loadChildren: () => import('app/auth/auth.module').then(m => m.AuthModule),
+    canLoad: [AuthorizedUserGuard]
   }
 ];
 
